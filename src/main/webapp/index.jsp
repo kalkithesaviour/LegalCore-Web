@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>LegalCore</title>
     <link rel="icon" href="resource/legalcore-logo.png" />
@@ -35,7 +34,7 @@
             <a class="navbar-brand" href="index.jsp">
                 <img src="resource/legalcore-logo.png" alt=""> <span id="logo">LegalCore</span>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" >
                 <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavbar">

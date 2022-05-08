@@ -61,7 +61,7 @@
     		String msg = (String) session.getAttribute("msg");
     		if (msg != null) {
     	%>
-    			<p style="color:red;"> <%=msg %></p>
+    			<p style="color:red;"> <%=msg %> </p>
     	<%		
     			session.setAttribute("msg", null);
     		}

@@ -57,11 +57,11 @@ if (adminName == null) {
         </nav>
         <nav id="my-nav">
             <a href="AdminHome.jsp">Home</a>
-            <a href="">Logout</a>
+            <a href="AdminLogout">Logout</a>
             <span>Welcome: <b> <%=adminName %> </b> </span>
         </nav>
         <div data-aos="fade-right" data-aos-duration="1000">
-            <h1><span>Admin Login</span></h1>
+            <h1>Admin Home</h1>
         </div>
     </header>
     

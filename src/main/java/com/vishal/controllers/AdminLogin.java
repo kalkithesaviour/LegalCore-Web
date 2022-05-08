@@ -1,4 +1,4 @@
-package com.vishal.controller;
+package com.vishal.controllers;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -14,12 +14,15 @@ import com.vishal.model.DAO;
  * Servlet implementation class AdminLogin
  */
 public class AdminLogin extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 			String id = request.getParameter("id");
 			String password = request.getParameter("password");
@@ -29,8 +32,7 @@ public class AdminLogin extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("msg", "Id or Password is wrong!");
 				response.sendRedirect("Admin.jsp");
-			}
-			else {
+			} else {
 				HttpSession session = request.getSession();
 				session.setAttribute("adminName", adminName);
 				response.sendRedirect("AdminHome.jsp");
