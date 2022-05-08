@@ -1,8 +1,9 @@
 <%
-String adminName = (String) session.getAttribute("adminName");
-if (adminName == null) {
+String name = (String) session.getAttribute("name");
+String email = (String) session.getAttribute("email");
+if (email == null) {
 	session.setAttribute("msg", "Plz Login First!");
-	response.sendRedirect("Admin.jsp");	
+	response.sendRedirect("User.jsp");	
 } else {
 %>
 <!DOCTYPE html>
@@ -39,7 +40,7 @@ if (adminName == null) {
 <body>
     <header>
         <nav class="navbar navbar-expand-md">
-            <a class="navbar-brand" href="AdminHome.jsp">
+            <a class="navbar-brand" href="UserHome.jsp">
                 <img src="resource/legalcore-logo.png" alt=""> <span id="logo">LegalCore</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" >
@@ -56,12 +57,13 @@ if (adminName == null) {
             </div>
         </nav>
         <nav id="my-nav">
-            <a href="AdminHome.jsp">Home</a>
-            <a href="AdminLogout">Logout</a>
-            <span>Welcome: <b> <%=adminName %> </b> </span>
+            <a href="UserHome.jsp">Home</a>
+            <a href="UserLogout">Logout</a>
+            <span>Welcome: <b> <%=name %> </b> </span>
+            <img src="GetPhoto?email=<%=email%>&type=user" alt="" height="50px" />
         </nav>
         <div data-aos="fade-right" data-aos-duration="1000">
-            <h1>Admin Home</h1>
+            <h1>User Home</h1>
         </div>
     </header>
     
