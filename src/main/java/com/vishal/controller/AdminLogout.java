@@ -1,4 +1,4 @@
-package com.vishal.controllers;
+package com.vishal.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

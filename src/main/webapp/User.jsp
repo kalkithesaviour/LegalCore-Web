@@ -64,15 +64,15 @@
 
 	<section class="container my-5">
 		<%
-		String msg = (String) session.getAttribute("msg");
-		if (msg != null) {
+			String msg = (String) session.getAttribute("msg");
+			if (msg != null) {
 		%>
-		<p style="color: red;">
-			<%=msg%>
-		</p>
+				<p style="color: red;">
+					<%= msg %>
+				</p>
 		<%
-		session.setAttribute("msg", null);
-		}
+				session.setAttribute("msg", null);
+			}
 		%>
 		<div class="row">
 			<div class="col">
@@ -154,7 +154,7 @@
 								<span class="input-group-text"><i
 									class="fa-solid fa-user"></i></span>
 							</div>
-							<input type="file" name="photo" accept=".png,.jpg,jpeg" class="form-control" />								
+							<input type="file" name="photo" accept=".png,.jpg,.jpeg" class="form-control" />								
 						</div>
 					</div>
 					<div class="my-4 col">

@@ -6,6 +6,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DAO {
@@ -15,6 +18,23 @@ public class DAO {
 	public DAO() throws Exception {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		c = DriverManager.getConnection("jdbc:mysql://localhost:3306/legalcoreweb", "root", "vishal#24");
+	}
+
+	public List<Map<String, Object>> getAdvocatesByCategory(String category) throws Exception {
+		PreparedStatement p = c.prepareStatement("SELECT * FROM advocates WHERE category = ?");
+		p.setString(1, category);
+		ResultSet rs = p.executeQuery();
+		List<Map<String, Object>> advocates = new ArrayList<>();
+		while (rs.next()) {
+			Map<String, Object> advocate = new HashMap<>();
+			advocate.put("email", rs.getString("email"));
+			advocate.put("name", rs.getString("name"));
+			advocate.put("phone", rs.getString("phone"));
+			advocate.put("address", rs.getString("address"));
+			advocate.put("experience", rs.getInt("experience"));
+			advocates.add(advocate);
+		}
+		return advocates;
 	}
 
 	public String checkAdminLogin(String id, String password) throws Exception {
@@ -73,10 +93,10 @@ public class DAO {
 		p.setString(6, (String) user.get("password"));
 		try {
 			p.executeUpdate();
+			return "success";
 		} catch (SQLIntegrityConstraintViolationException e) {
 			return "failed";
 		}
-		return "success";
 	}
 
 	public String registerAdvocate(Map<String, Object> advocate) throws Exception {
@@ -92,10 +112,10 @@ public class DAO {
 		p.setString(8, (String) advocate.get("category"));
 		try {
 			p.executeUpdate();
+			return "success";
 		} catch (SQLIntegrityConstraintViolationException e) {
 			return "failed";
 		}
-		return "success";
 	}
 
 	public byte[] getPhoto(String email, String type) throws Exception {

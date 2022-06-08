@@ -1,4 +1,4 @@
-package com.vishal.controllers;
+package com.vishal.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -11,9 +11,9 @@ import java.io.IOException;
 import com.vishal.model.DAO;
 
 /**
- * Servlet implementation class UserLogin
+ * Servlet implementation class AdminLogin
  */
-public class UserLogin extends HttpServlet {
+public class AdminLogin extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -24,19 +24,18 @@ public class UserLogin extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			String email = request.getParameter("email");
+			String id = request.getParameter("id");
 			String password = request.getParameter("password");
 			DAO d = new DAO();
-			String name = d.checkUserLogin(email, password);
-			if (name == null) {
+			String adminName = d.checkAdminLogin(id, password);
+			if (adminName == null) {
 				HttpSession session = request.getSession();
-				session.setAttribute("msg", "Email-Id or Password is wrong!");
-				response.sendRedirect("User.jsp");
+				session.setAttribute("msg", "Id or Password is wrong!");
+				response.sendRedirect("Admin.jsp");
 			} else {
 				HttpSession session = request.getSession();
-				session.setAttribute("name", name);
-				session.setAttribute("email", email);
-				response.sendRedirect("UserHome.jsp");
+				session.setAttribute("adminName", adminName);
+				response.sendRedirect("AdminHome.jsp");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,4 +1,4 @@
-package com.vishal.controllers;
+package com.vishal.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -60,7 +60,7 @@ public class AdvocateRegister extends HttpServlet {
 				response.sendRedirect("AdvocateHome.jsp");
 			} else {
 				HttpSession session = request.getSession();
-				session.setAttribute("msg", "Id or Password is wrong!");
+				session.setAttribute("msg", "Email ID already exists!");
 				response.sendRedirect("Advocate.jsp");
 			}
 		} catch (Exception e) {

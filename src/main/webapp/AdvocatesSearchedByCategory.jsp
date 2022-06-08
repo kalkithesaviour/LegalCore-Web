@@ -1,6 +1,8 @@
+<%@ page import ="java.util.List" %>
+<%@ page import ="java.util.Map" %>
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>LegalCore</title>
     <link rel="icon" href="resource/legalcore-logo.png" />
@@ -50,43 +52,41 @@
         </nav>
         <nav id="my-nav">
             <a href="index.jsp">Home</a>
+            <a href="Advocate.jsp">Advocate</a>
+            <a href="User.jsp">User</a>
         </nav>
         <div data-aos="fade-right" data-aos-duration="1000">
-            <h1><span>Admin Login</span></h1>
+            <h1>Trust And <br/> <span>Client Focus</span></h1>
         </div>
     </header>
     
     <section class="container my-5">
     	<%
-    		String msg = (String) session.getAttribute("msg");
-    		if (msg != null) {
+    		String category = (String) request.getAttribute("category");
+    		@SuppressWarnings("unchecked")
+    		List<Map<String, Object>> advocates = (List<Map<String, Object>>) request.getAttribute("advocates");
     	%>
-    			<p style="color:red;"> <%= msg %> </p>
-    	<%		
-    			session.setAttribute("msg", null);
+    	<h4>Search Results for Advocates of <span class="text-primary">"<%= category %>"</span> category</h4>
+    	<%
+    		for (Map<String, Object> advocate : advocates) {
+		%>    			
+				<div class="bg-warning p-3 my-3" style="height: 140px;">
+					<div style="float:left;">
+						<p>
+							Name: <%= advocate.get("name") %>
+							Email: <%= advocate.get("email") %> 
+							Phone: <%= advocate.get("phone") %>
+							Experience: <%= advocate.get("experience") %>
+						</p>
+						<p>Address: <%= advocate.get("address") %></p>
+					</div>
+					<div style="float:right;">
+						<img src="GetPhoto?email=<%= advocate.get("email") %>&type=advocate" alt="" height="100px" />
+					</div>
+				</div>
+    	<%	
     		}
     	%>
-    	<form action="AdminLogin" method="post" >
-            <div class="my-4 col-5">
-              <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                  </div>
-                  <input type="text" name="id" placeholder="Admin Id" class="form-control"  />
-              </div>
-            </div>
-            <div class="my-4 col-5">
-              <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa-solid fa-star-of-life"></i></span>
-                  </div>
-                  <input type="password" name="password" placeholder="Admin Password" class="form-control"  />
-              </div>
-            </div>
-            <div class="col-sm my-2">
-              <button class="btn btn-primary" type="submit">Login</button>
-            </div>
-        </form>
     </section>
     <footer class="container-fluid bg-dark p-4 mt-5">
         <nav class="navbar text-white">

@@ -59,7 +59,7 @@
                 <br/> est nam odio quia rerum autem neque pariatur  
             </p>
         </div>
-        <form method="post" >
+        <form action="SearchAdvocate" method="post">
             <div class="row">
               <div class="col-sm my-2">
                 <div class="input-group">
@@ -304,7 +304,6 @@
     $("#c-top").click(function () {
         $("html, body").animate({scrollTop: 0}, 1000);
     });
-
 </script>  
 </html>
 

@@ -1,19 +1,21 @@
-package com.vishal.controllers;
+package com.vishal.controller;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import com.vishal.model.DAO;
 
 /**
- * Servlet implementation class GetPhoto
+ * Servlet implementation class SearchAdvocate
  */
-public class GetPhoto extends HttpServlet {
-
+public class SearchAdvocate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -23,11 +25,13 @@ public class GetPhoto extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			String email = request.getParameter("email");
-			String type = request.getParameter("type");
+			String category = request.getParameter("category");
 			DAO d = new DAO();
-			byte[] b = d.getPhoto(email, type);
-			response.getOutputStream().write(b);
+			List<Map<String, Object>> advocates = d.getAdvocatesByCategory(category);
+			request.setAttribute("category", category);
+			request.setAttribute("advocates", advocates);
+			RequestDispatcher rd = request.getRequestDispatcher("AdvocatesSearchedByCategory.jsp");
+			rd.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

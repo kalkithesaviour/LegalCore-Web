@@ -1,19 +1,18 @@
-package com.vishal.controllers;
+package com.vishal.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
 import com.vishal.model.DAO;
 
 /**
- * Servlet implementation class AdvocateLogin
+ * Servlet implementation class GetPhoto
  */
-public class AdvocateLogin extends HttpServlet {
+public class GetPhoto extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -25,19 +24,10 @@ public class AdvocateLogin extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			String email = request.getParameter("email");
-			String password = request.getParameter("password");
+			String type = request.getParameter("type");
 			DAO d = new DAO();
-			String name = d.checkAdvocateLogin(email, password);
-			if (name == null) {
-				HttpSession session = request.getSession();
-				session.setAttribute("msg", "Email-Id or Password is wrong!");
-				response.sendRedirect("Advocate.jsp");
-			} else {
-				HttpSession session = request.getSession();
-				session.setAttribute("name", name);
-				session.setAttribute("email", email);
-				response.sendRedirect("AdvocateHome.jsp");
-			}
+			byte[] b = d.getPhoto(email, type);
+			response.getOutputStream().write(b);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
