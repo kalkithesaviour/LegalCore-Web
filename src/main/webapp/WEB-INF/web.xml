@@ -21,13 +21,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>AdminLogout</display-name>
-    <servlet-name>AdminLogout</servlet-name>
-    <servlet-class>com.vishal.controller.AdminLogout</servlet-class>
+    <display-name>Logout</display-name>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>com.vishal.controller.Logout</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AdminLogout</servlet-name>
-    <url-pattern>/AdminLogout</url-pattern>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/Logout</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -71,26 +71,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>AdvocateLogout</display-name>
-    <servlet-name>AdvocateLogout</servlet-name>
-    <servlet-class>com.vishal.controller.AdvocateLogout</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdvocateLogout</servlet-name>
-    <url-pattern>/AdvocateLogout</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>UserLogout</display-name>
-    <servlet-name>UserLogout</servlet-name>
-    <servlet-class>com.vishal.controller.UserLogout</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UserLogout</servlet-name>
-    <url-pattern>/UserLogout</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>GetPhoto</display-name>
     <servlet-name>GetPhoto</servlet-name>
     <servlet-class>com.vishal.controller.GetPhoto</servlet-class>
@@ -108,5 +88,15 @@
   <servlet-mapping>
     <servlet-name>SearchAdvocate</servlet-name>
     <url-pattern>/SearchAdvocate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddAdvice</display-name>
+    <servlet-name>AddAdvice</servlet-name>
+    <servlet-class>com.vishal.controller.AddAdvice</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddAdvice</servlet-name>
+    <url-pattern>/AddAdvice</url-pattern>
   </servlet-mapping>
 </web-app>

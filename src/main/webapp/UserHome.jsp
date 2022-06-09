@@ -58,8 +58,8 @@
 		        </nav>
 		        <nav id="my-nav">
 		            <a href="UserHome.jsp">Home</a>
-		            <a href="UserLogout">Logout</a>
-		            <span>Welcome: <b> <%= name %> </b> </span>
+		            <a href="Logout">Logout</a>
+		            <span>Welcome <b> <%= name %> </b> </span>
 		            <img src="GetPhoto?email=<%= email %>&type=user" alt="" height="50px" />
 		        </nav>
 		        <div data-aos="fade-right" data-aos-duration="1000">

@@ -59,7 +59,7 @@
 		        <nav id="my-nav">
 		            <a href="AdvocateHome.jsp">Home</a>
 		            <a href="AdvocateLogout">Logout</a>
-		            <span>Welcome: <b> <%= name %> </b> </span>
+		            <span>Welcome <b> <%= name %> </b> </span>
 		            <img src="GetPhoto?email=<%= email %>&type=advocate" alt="" height="50px" />
 		        </nav>
 		        <div data-aos="fade-right" data-aos-duration="1000">

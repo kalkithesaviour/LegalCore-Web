@@ -1,8 +1,9 @@
 <%
 	String name = (String) session.getAttribute("name");
-	if (name == null) {
+	String email = (String) session.getAttribute("email");
+	if (email == null) {
 		session.setAttribute("msg", "Please Login First!");
-		response.sendRedirect("Admin.jsp");	
+		response.sendRedirect("User.jsp");	
 	} else {
 %>
 		<!DOCTYPE html>
@@ -55,18 +56,77 @@
 		                </div>
 		            </div>
 		        </nav>
-		        <nav id="my-nav">
-		            <a href="AdminHome.jsp">Home</a>
-		            <a href="Logout">Logout</a>
-		            <span>Welcome <b> <%= name %> </b> </span>
-		        </nav>
-		        <div data-aos="fade-right" data-aos-duration="1000">
-		            <h1>Admin Home</h1>
-		        </div>
+		        <%
+					String type = (String) session.getAttribute("type");
+					if (name == null) {
+				%>
+						<nav id="my-nav">
+				            <a href="index.jsp">Home</a>
+				            <a href="Advocate.jsp">Advocate</a>
+				            <a href="User.jsp">User</a>
+			        	</nav>
+				<%
+					} else {
+				%>
+						<nav id="my-nav">
+				            <a href="index.jsp">Home</a>
+				            <a href="Logout">Logout</a>
+				            <span>Welcome <b> <%= name %> </b> </span>
+				            <img src="GetPhoto?email=<%= email %>&type=<%= type %>" alt="" height="50px" />
+			        	</nav>
+			    <%
+					}
+				%>
 		    </header>
 		    
 		    <section class="container my-5">
-		    	
+		    	<%
+		    		String a_email = request.getParameter("a_email");
+		    		String a_name = request.getParameter("a_name");
+		    	%>
+		    	<p>
+		    		<img src="GetPhoto?email=<%= a_email %>&type=advocate" alt="" height="100px" />
+		    		<b><%= a_name %></b> [ <b><%= a_email %></b> ]
+	    		</p>
+		    </section>
+		    <section class="container">
+		    	<div class="row">
+			    	<div class="col bg-info">
+			    		
+			    	</div>
+			    	<div class="col bg-light">
+			    		<form action="AddAdvice" method="post">
+							<div class="my-4 col">
+								<%
+									String msg = (String) session.getAttribute("msg");
+									if (msg != null) {
+								%>
+										<p style="color: red;">
+											<%= msg %>
+										</p>
+								<%
+										session.setAttribute("msg", null);
+									}
+								%>
+								<h5>Get New Advice!</h5>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i
+											class="fa-solid fa-user"></i></span>
+									</div>
+									<textarea  cols="3" name="query" maxlength="500" placeholder="Enter your query." 
+										class="form-control" required></textarea>
+								</div>
+							</div>
+							<div class="col-sm my-2">
+								<input type="hidden" name="a_email" value="<%= a_email %>" />
+								<input type="hidden" name="a_name" value="<%= a_name %>" />
+								<input type="hidden" name="u_email" value="<%= email %>" />
+								<button class="btn btn-primary" type="submit">Submit</button>
+							</div>
+						</form>
+			    	</div>
+			    </div>
 		    </section>
 		    <footer class="container-fluid bg-dark p-4 mt-5">
 		        <nav class="navbar text-white">

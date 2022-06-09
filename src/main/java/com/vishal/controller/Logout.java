@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class UserLogout
  */
-public class UserLogout extends HttpServlet {
+public class Logout extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -23,7 +23,7 @@ public class UserLogout extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		response.sendRedirect("User.jsp");
+		response.sendRedirect("index.jsp");
 	}
 
 }

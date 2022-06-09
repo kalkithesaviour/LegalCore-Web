@@ -154,7 +154,7 @@
 								<span class="input-group-text"><i
 									class="fa-solid fa-user"></i></span>
 							</div>
-							<input type="file" name="photo" accept=".png,.jpg,.jpeg" class="form-control" />								
+							<input type="file" name="photo" accept=".png,.jpg,.jpeg" class="form-control" required />								
 						</div>
 					</div>
 					<div class="my-4 col">

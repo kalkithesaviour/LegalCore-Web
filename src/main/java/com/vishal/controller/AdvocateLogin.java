@@ -36,6 +36,7 @@ public class AdvocateLogin extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("name", name);
 				session.setAttribute("email", email);
+				session.setAttribute("type", "advocate");
 				response.sendRedirect("AdvocateHome.jsp");
 			}
 		} catch (Exception e) {

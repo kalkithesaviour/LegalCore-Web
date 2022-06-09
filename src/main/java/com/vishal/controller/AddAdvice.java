@@ -1,6 +1,5 @@
 package com.vishal.controller;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,10 +11,9 @@ import java.io.IOException;
 import com.vishal.model.DAO;
 
 /**
- * Servlet implementation class AdminLogin
+ * Servlet implementation class AddAdvice
  */
-public class AdminLogin extends HttpServlet {
-
+public class AddAdvice extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,20 +23,20 @@ public class AdminLogin extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			RequestDispatcher rd = request.getRequestDispatcher("Logout");
-			rd.include(request, response);
-			String id = request.getParameter("id");
-			String password = request.getParameter("password");
+			String a_email = request.getParameter("a_email");
+			String a_name = request.getParameter("a_name");
+			String u_email = request.getParameter("u_email");
+			String query = request.getParameter("query");
 			DAO d = new DAO();
-			String name = d.checkAdminLogin(id, password);
-			if (name == null) {
+			String result = d.addAdvice(a_email, u_email, query);
+			if (result.equalsIgnoreCase("success")) {
 				HttpSession session = request.getSession();
-				session.setAttribute("msg", "Id or Password is wrong!");
-				response.sendRedirect("Admin.jsp");
+				session.setAttribute("msg", "Query Sent Successfully!");
+				response.sendRedirect("GetAdvice.jsp?a_email=" + a_email + "&a_name=" + a_name);
 			} else {
 				HttpSession session = request.getSession();
-				session.setAttribute("name", name);
-				response.sendRedirect("AdminHome.jsp");
+				session.setAttribute("msg", "Query Sending Failed!");
+				response.sendRedirect("GetAdvice.jsp?a_email=" + a_email + "&a_name=" + a_name);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

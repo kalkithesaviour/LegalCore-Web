@@ -20,9 +20,10 @@ public class DAO {
 		c = DriverManager.getConnection("jdbc:mysql://localhost:3306/legalcoreweb", "root", "vishal#24");
 	}
 
-	public List<Map<String, Object>> getAdvocatesByCategory(String category) throws Exception {
-		PreparedStatement p = c.prepareStatement("SELECT * FROM advocates WHERE category = ?");
+	public List<Map<String, Object>> getAdvocatesByCategory(String category, String email) throws Exception {
+		PreparedStatement p = c.prepareStatement("SELECT * FROM advocates WHERE category = ? AND email != ?");
 		p.setString(1, category);
+		p.setString(2, email);
 		ResultSet rs = p.executeQuery();
 		List<Map<String, Object>> advocates = new ArrayList<>();
 		while (rs.next()) {
@@ -134,6 +135,20 @@ public class DAO {
 		} else {
 			c.close();
 			return null;
+		}
+	}
+
+	public String addAdvice(String a_email, String u_email, String query) throws Exception {
+		PreparedStatement p = c.prepareStatement(
+				"INSERT INTO advices (a_email, u_email, query, q_date) VALUES (?, ?, ?, CURRENT_DATE)");
+		p.setString(1, a_email);
+		p.setString(2, u_email);
+		p.setString(3, query);
+		try {
+			p.executeUpdate();
+			return "success";
+		} catch (Exception e) {
+			return "failed";
 		}
 	}
 

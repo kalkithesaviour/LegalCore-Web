@@ -26,8 +26,9 @@ public class SearchAdvocate extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			String category = request.getParameter("category");
+			String email = request.getParameter("email");
 			DAO d = new DAO();
-			List<Map<String, Object>> advocates = d.getAdvocatesByCategory(category);
+			List<Map<String, Object>> advocates = d.getAdvocatesByCategory(category, email);
 			request.setAttribute("category", category);
 			request.setAttribute("advocates", advocates);
 			RequestDispatcher rd = request.getRequestDispatcher("AdvocatesSearchedByCategory.jsp");

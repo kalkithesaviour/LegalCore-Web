@@ -50,11 +50,29 @@
                 </div>
             </div>
         </nav>
-        <nav id="my-nav">
-            <a href="index.jsp">Home</a>
-            <a href="Advocate.jsp">Advocate</a>
-            <a href="User.jsp">User</a>
-        </nav>
+        <%
+			String name = (String) session.getAttribute("name");
+			String email = (String) session.getAttribute("email");
+			String type = (String) session.getAttribute("type");
+			if (name == null) {
+		%>
+				<nav id="my-nav">
+		            <a href="index.jsp">Home</a>
+		            <a href="Advocate.jsp">Advocate</a>
+		            <a href="User.jsp">User</a>
+	        	</nav>
+		<%
+			} else {
+		%>
+				<nav id="my-nav">
+		            <a href="index.jsp">Home</a>
+		            <a href="Logout">Logout</a>
+		            <span>Welcome <b> <%= name %> </b> </span>
+		            <img src="GetPhoto?email=<%= email %>&type=<%= type %>" alt="" height="50px" />
+	        	</nav>
+	    <%
+			}
+		%>
         <div data-aos="fade-right" data-aos-duration="1000">
             <h1>Trust And <br/> <span>Client Focus</span></h1>
         </div>
@@ -79,6 +97,11 @@
 							Experience: <%= advocate.get("experience") %>
 						</p>
 						<p>Address: <%= advocate.get("address") %></p>
+						<form action="GetAdvice.jsp" method="post">
+							<input type="hidden" name="a_email" value="<%= advocate.get("email") %>" />
+							<input type="hidden" name="a_name" value="<%= advocate.get("name") %>" />
+							<button class="btn btn-success" type="submit">Get Advice</button>
+						</form>
 					</div>
 					<div style="float:right;">
 						<img src="GetPhoto?email=<%= advocate.get("email") %>&type=advocate" alt="" height="100px" />

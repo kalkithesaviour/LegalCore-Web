@@ -47,13 +47,31 @@
                 </div>
             </div>
         </nav>
-        <nav id="my-nav">
-            <a href="index.jsp">Home</a>
-            <a href="Advocate.jsp">Advocate</a>
-            <a href="User.jsp">User</a>
-        </nav>
+        <%
+			String name = (String) session.getAttribute("name");
+			String email = (String) session.getAttribute("email");
+			String type = (String) session.getAttribute("type");
+			if (name == null) {
+		%>
+				<nav id="my-nav">
+		            <a href="index.jsp">Home</a>
+		            <a href="Advocate.jsp">Advocate</a>
+		            <a href="User.jsp">User</a>
+	        	</nav>
+		<%
+			} else {
+		%>
+				<nav id="my-nav">
+		            <a href="index.jsp">Home</a>
+		            <a href="Logout">Logout</a>
+		            <span>Welcome <b> <%= name %> </b> </span>
+		            <img src="GetPhoto?email=<%= email %>&type=<%= type %>" alt="" height="50px" />
+	        	</nav>
+	    <%
+			}
+		%>
         <div data-aos="fade-right" data-aos-duration="1000">
-            <h1>Trust And <br/> <span>Client Focus</span></h1>
+       	    <h1>Trust And <br/> <span>Client Focus</span></h1>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 <br/> est nam odio quia rerum autem neque pariatur  
@@ -74,6 +92,7 @@
                 </div>
               </div>
               <div class="col-sm my-2">
+              	<input type="hidden" name="email" value="<%= email %>" />
                 <button class="btn btn-primary" type="submit">Search</button>
               </div>
             </div>
