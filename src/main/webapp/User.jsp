@@ -102,7 +102,31 @@
 						<button class="btn btn-primary" type="submit">Login</button>
 					</div>
 				</form>
-				<a href="">Forgot password?</a>
+				
+				<a href="" data-toggle="modal" data-target="#exampleModal">Forgot password?</a>
+				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    				<div class="modal-dialog">
+        				<div class="modal-content">
+            				<div class="modal-header">
+               					<h5 class="modal-title" id="exampleModalLabel">Forgot password?</h5>
+               					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                	    			<span aria-hidden="true">&times;</span>
+				        		</button>
+				      		</div>
+			      			<div class="modal-body">
+				        		<form action="SendMail" method="post">
+				        			<div class="form-group">
+				        				<input type="email" class="form-control" name="email" placeholder="Enter your registered email id" required />
+				        			</div>
+				        			<div class="form-group">
+				        				<input type="hidden" name="type" value="user" />
+				        				<button type="submit" class="btn btn-primary">Submit</button>
+				        			</div>
+				        		</form>
+				      		</div>
+				    	</div>
+			  		</div>
+				</div>
 			</div>
 			<div class="col">
 				<h3>Sign-Up</h3>

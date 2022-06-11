@@ -289,4 +289,23 @@ public class DAO {
 		}
 	}
 
+	public String getPassword(String email, String type) throws Exception {
+		PreparedStatement p;
+		if (type.equalsIgnoreCase("advocate")) {
+			p = c.prepareStatement("SELECT password FROM advocates WHERE email = ?");
+		} else {
+			p = c.prepareStatement("SELECT password FROM users WHERE email = ?");
+		}
+		p.setString(1, email);
+		ResultSet rs = p.executeQuery();
+		if (rs.next()) {
+			String pass = rs.getString("password");
+			c.close();
+			return pass;
+		} else {
+			c.close();
+			return null;
+		}
+	}
+
 }
