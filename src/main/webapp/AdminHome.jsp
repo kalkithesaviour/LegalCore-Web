@@ -1,3 +1,7 @@
+<%@ page import ="com.vishal.model.DAO" %>
+<%@ page import ="java.util.List" %>
+<%@ page import ="java.util.Map" %>
+
 <%
 	String name = (String) session.getAttribute("name");
 	if (name == null) {
@@ -66,7 +70,84 @@
 		    </header>
 		    
 		    <section class="container my-5">
-		    	
+		    	<div class="row">
+		    		<div class="col">
+		    			<h3>Advocates</h3>
+		    			<%
+		    		    	DAO d = new DAO();
+				    		List<Map<String, Object>> advocates = d.getAdvocates();
+				    		for (Map<String, Object> advocate : advocates) {
+				    			String status = (String) advocate.get("status");
+						%>    	
+								<div class="bg-info p-3 my-2">
+									<img src="GetPhoto?email=<%= advocate.get("email") %>&type=advocate" alt="" height="100px" />
+									<p>
+										Name: <%= advocate.get("name") %>
+										Phone: <%= advocate.get("phone") %>
+									</p>
+									<p>
+										Email: <%= advocate.get("email") %> 
+										Experience: <%= advocate.get("experience") %>
+									</p>
+									<p>Address: <%= advocate.get("address") %></p>
+									<p>
+										Category: <%= advocate.get("category") %>
+										Status: <%= status %>
+									</p>
+									<%
+										if (status.equalsIgnoreCase("active")) {
+									%>
+											<a class="btn btn-danger" href="UpdateStatus?email=<%= advocate.get("email") %>&status=deactive&type=advocate">Deactivate</a>
+									<%	
+										} else {
+									%>
+											<a class="btn btn-success" href="UpdateStatus?email=<%= advocate.get("email") %>&status=active&type=advocate">Activate</a>
+									<%	
+										}
+									%>
+								</div>
+				    	<%	
+				    		}
+				    	%>
+		    		</div>
+		    		<div class="col">
+		    			<h3>Users</h3>
+		    			<%
+		    				d = new DAO();
+				    		List<Map<String, Object>> users = d.getUsers();
+				    		for (Map<String, Object> user : users) {
+				    			String status = (String) user.get("status");
+						%>    	
+								<div class="bg-secondary p-3 my-2">
+									<img src="GetPhoto?email=<%= user.get("email") %>&type=user" alt="" height="100px" />
+									<p>
+										Name: <%= user.get("name") %>
+										Phone: <%= user.get("phone") %>
+									</p>
+									<p>
+										Email: <%= user.get("email") %>
+									</p>
+									<p>Address: <%= user.get("address") %></p>
+									<p>
+										Status: <%= status %>
+									</p>
+									<%
+										if (status.equalsIgnoreCase("active")) {
+									%>
+											<a class="btn btn-danger" href="UpdateStatus?email=<%= user.get("email") %>&status=deactive&type=user">Deactivate</a>
+									<%	
+										} else {
+									%>
+											<a class="btn btn-success" href="UpdateStatus?email=<%= user.get("email") %>&status=active&type=user">Activate</a>
+									<%	
+										}
+									%>
+								</div>
+				    	<%	
+				    		}
+				    	%>
+		    		</div>
+		    	</div>
 		    </section>
 		    <footer class="container-fluid bg-dark p-4 mt-5">
 		        <nav class="navbar text-white">

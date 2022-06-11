@@ -1,3 +1,7 @@
+<%@ page import ="com.vishal.model.DAO" %>
+<%@ page import ="java.util.List" %>
+<%@ page import ="java.util.Map" %>
+
 <%
 	String name = (String) session.getAttribute("name");
 	String email = (String) session.getAttribute("email");
@@ -92,16 +96,45 @@
 		    <section class="container">
 		    	<div class="row">
 			    	<div class="col bg-info">
-			    		
+			    		<%
+			    			DAO d = new DAO();
+			    			List<Map<String, Object>> advices = d.getAdviceByUserAdvocate(email, a_email);
+			    			for (Map<String, Object> advice : advices) {
+			    		%>
+			    				<div class="bg-warning p-3 my-2">
+			    					<p>
+		    							Query: <b><%= advice.get("query") %></b>
+		    							Date: <b><%= advice.get("q_date") %></b>
+			    					</p>
+			    					<%
+			    						if (advice.get("reply") != null) {
+			    					%>		
+					    					<p>
+				    							Reply: <b><%= advice.get("reply") %></b>
+				    							Date: <b><%= advice.get("r_date") %></b>
+					    					</p>
+			    					<%
+			    						} else {
+			    				  	%>
+			    							<p>
+			    								Reply: <b style="color:blue;">Pending</b>
+			    							</p>
+					    			<%
+			    						}
+			    					%>
+			    				</div>
+			    		<%
+			    			}
+			    		%>
 			    	</div>
 			    	<div class="col bg-light">
-			    		<form action="AddAdvice" method="post">
+			    		<form action="AskAdvice" method="post">
 							<div class="my-4 col">
 								<%
 									String msg = (String) session.getAttribute("msg");
 									if (msg != null) {
 								%>
-										<p style="color: red;">
+										<p style="color: green;">
 											<%= msg %>
 										</p>
 								<%
@@ -114,7 +147,7 @@
 										<span class="input-group-text"><i
 											class="fa-solid fa-user"></i></span>
 									</div>
-									<textarea  cols="3" name="query" maxlength="500" placeholder="Enter your query." 
+									<textarea  cols="3" name="query" maxlength="500" placeholder="Enter your query" 
 										class="form-control" required></textarea>
 								</div>
 							</div>

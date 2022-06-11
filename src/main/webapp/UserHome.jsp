@@ -1,3 +1,7 @@
+<%@ page import ="com.vishal.model.DAO" %>
+<%@ page import ="java.util.List" %>
+<%@ page import ="java.util.Map" %>
+
 <%
 	String name = (String) session.getAttribute("name");
 	String email = (String) session.getAttribute("email");
@@ -68,7 +72,43 @@
 		    </header>
 		    
 		    <section class="container my-5">
-		    	
+    			<%
+					DAO d = new DAO();
+		    		List<String> advocates = d.getAdvocatesByUser(email);
+					for (String a_email : advocates) {
+				%>
+						<p> Advocate Email: <b style="background-color:brown;color:white;"><%= a_email %></b> </p>
+				<%		
+						d = new DAO();
+						List<Map<String, Object>> advices = d.getAdviceByUserAdvocate(email, a_email);
+						for (Map<String, Object> advice : advices) {
+				%>
+							<div class="bg-warning p-3">
+								<p> 
+			    					Query: <b><%= advice.get("query") %></b>
+			    					Date: <b><%= advice.get("q_date") %></b>
+			    				</p>
+			    				<%
+			    					if (advice.get("reply") != null) {
+		    					%>
+				    					<p> 
+					    					Reply: <b><%= advice.get("reply") %></b>
+					    					Date: <b><%= advice.get("r_date") %></b>
+					    				</p>	
+			    				<%		
+			    					} else {
+		    					%>
+				    					<p> 
+				    						Reply: <b style="color:red;">Pending</b>
+					    				</p>	
+			    				<%			
+			    					}
+			    				%>
+							</div>
+				<%		
+						}
+					}
+				%>
 		    </section>
 		    <footer class="container-fluid bg-dark p-4 mt-5">
 		        <nav class="navbar text-white">

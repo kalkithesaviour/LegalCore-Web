@@ -13,7 +13,7 @@ import com.vishal.model.DAO;
 /**
  * Servlet implementation class AddAdvice
  */
-public class AddAdvice extends HttpServlet {
+public class AskAdvice extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -28,7 +28,7 @@ public class AddAdvice extends HttpServlet {
 			String u_email = request.getParameter("u_email");
 			String query = request.getParameter("query");
 			DAO d = new DAO();
-			String result = d.addAdvice(a_email, u_email, query);
+			String result = d.askAdvice(a_email, u_email, query);
 			if (result.equalsIgnoreCase("success")) {
 				HttpSession session = request.getSession();
 				session.setAttribute("msg", "Query Sent Successfully!");

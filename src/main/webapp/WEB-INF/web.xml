@@ -91,12 +91,32 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>AddAdvice</display-name>
-    <servlet-name>AddAdvice</servlet-name>
-    <servlet-class>com.vishal.controller.AddAdvice</servlet-class>
+    <display-name>AskAdvice</display-name>
+    <servlet-name>AskAdvice</servlet-name>
+    <servlet-class>com.vishal.controller.AskAdvice</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AddAdvice</servlet-name>
-    <url-pattern>/AddAdvice</url-pattern>
+    <servlet-name>AskAdvice</servlet-name>
+    <url-pattern>/AskAdvice</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReplyAdvice</display-name>
+    <servlet-name>ReplyAdvice</servlet-name>
+    <servlet-class>com.vishal.controller.ReplyAdvice</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReplyAdvice</servlet-name>
+    <url-pattern>/ReplyAdvice</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateStatus</display-name>
+    <servlet-name>UpdateStatus</servlet-name>
+    <servlet-class>com.vishal.controller.UpdateStatus</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateStatus</servlet-name>
+    <url-pattern>/UpdateStatus</url-pattern>
   </servlet-mapping>
 </web-app>

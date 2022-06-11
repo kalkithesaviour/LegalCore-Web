@@ -67,64 +67,26 @@
 		            <img src="GetPhoto?email=<%= email %>&type=advocate" alt="" height="50px" />
 		        </nav>
 		        <div data-aos="fade-right" data-aos-duration="1000">
-		            <h1>Advocate Home</h1>
+		            <h1>About User</h1>
 		        </div>
 		    </header>
 		    
 		    <section class="container my-5">
 		    	<%
+		    		String u_email = request.getParameter("u_email");
 					DAO d = new DAO();
-		    		List<String> users = d.getUsersByAdvocate(email);
-					for (String u_email : users) {
-				%>
-						<p>
-							User Email: <b style="background-color:brown;color:white;"><%= u_email %></b>
-							<a class="btn btn-primary" href="AboutUser.jsp?u_email=<%= u_email %>">User Details</a>
-						</p>
-				<%		
-						d = new DAO();
-						List<Map<String, Object>> advices = d.getAdviceByUserAdvocate(u_email, email);
-						for (Map<String, Object> advice : advices) {
-				%>
-							<div class="bg-warning p-3">
-								<p> 
-			    					Query: <b><%= advice.get("query") %></b>
-			    					Date: <b><%= advice.get("q_date") %></b>
-			    				</p>
-			    				<%
-			    					if (advice.get("reply") != null) {
-		    					%>
-				    					<p> 
-					    					Reply: <b><%= advice.get("reply") %></b>
-					    					Date: <b><%= advice.get("r_date") %></b>
-					    				</p>	
-			    				<%		
-			    					} else {
-		    					%>
-			    						<form action="ReplyAdvice" method="post">
-											<div class="my-4 col">
-												<div class="input-group">
-													<div class="input-group-prepend">
-														<span class="input-group-text"><i
-															class="fa-solid fa-user"></i></span>
-													</div>
-													<textarea  cols="3" name="reply" maxlength="500" placeholder="Enter your reply" 
-														class="form-control" required></textarea>
-												</div>
-											</div>
-											<div class="col-sm my-2">
-												<input type="hidden" name="id" value="<%= advice.get("id") %>" />
-												<button class="btn btn-primary" type="submit">Reply</button>
-											</div>
-										</form>
-			    				<%			
-			    					}
-			    				%>
-							</div>
-				<%		
-						}
-					}
-				%>
+		    		Map<String, String> user = d.getUserByEmail(u_email);
+	    		%>
+				<div class="bg-warning p-3">
+					<img src="GetPhoto?email=<%= u_email %>&type=user" alt="" height="200px" />
+					<p> 
+    					Name: <b><%= user.get("name") %></b>
+    					Phone: <b><%= user.get("phone") %></b>
+    				</p>
+    				<p> 
+   						Address: <b><%= user.get("address") %></b>
+    				</p>
+				</div>
 		    </section>
 		    <footer class="container-fluid bg-dark p-4 mt-5">
 		        <nav class="navbar text-white">
